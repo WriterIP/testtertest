@@ -3,6 +3,7 @@ Here will be comments to everything done
 About code:
 - I know about helpers (absence of 'em'), understood it a bit late. It's completely my fault
 - Ignored assertions directly to BD for checking created/updated gists (meaning strict request to BD) > needed much time on investigation of how to implement it
+- I know, that with nano = 0 solution is bad, and can cause test to fail
 
 Test logic (test subject > objects to be tested > automation priority (all cases mentioned here have to be checked manually):
     Create gist
