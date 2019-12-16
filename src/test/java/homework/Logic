@@ -1,0 +1,35 @@
+Here will be comments to everything done
+
+About code:
+- I know about helpers (absence of 'em'), understood it a bit late. It's completely my fault
+- Ignored assertions directly to BD for checking created/updated gists (meaning strict request to BD) > needed much time on investigation of how to implement it
+
+Test logic (test subject > objects to be tested > automation priority (all cases mentioned here have to be checked manually):
+    Create gist
+            - Happypath > highest
+            - Input data validation to each field/pairwise > lowest
+            - Missing field case (without "info" field 500 is received) > medium
+            - Date field test (before/after currentdate) > lowest
+    Get gist
+            - Happypath > highest
+            - Get gist w/o id > medium
+            - Get gits with unexisting id > low  (in this case > it's case of getAllGists with highest)
+            - Check data of gist received > highest
+    Update existing gist
+            - Happypath > highest
+            - Input data validation to each field/pairwise > lowest
+            - Missing field case (without "info" field 500 is received) > low (quiet duplicates create gist case)
+            - Update gist w/o id > medium
+            - Update gist with unexisting id > high (we might create new sometimes :) )
+            - Check data of gist updated > highest (is performed after getting updated gist)
+    Delete gist
+            - Happypath > highest
+            - Delete gist w/o id > high (we might delete multiple gists in this case)
+            - Delete gist with unexisting id > low
+    Get all gists
+            - Happypath > highest
+    Get all gists with valid until date paged
+            - Happypath > high
+            - Date used for paging check and array received > low
+
+Notes: Errors have different time formatting ("timestamp" has ms)
