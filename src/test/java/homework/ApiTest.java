@@ -25,7 +25,6 @@ public class ApiTest {
     @Test
     @Order(1)
     public void createGistTest() throws JSONException {
-//        RequestSpec requestSpec = new RequestSpec();
         JSONObject jsonObject = new JSONObject();
 
         jsonObject
@@ -41,9 +40,50 @@ public class ApiTest {
     @Test
     @Order(2)
     public void getGistTest() {
-//        RequestSpec requestSpec = new RequestSpec();
         String uuid = requestSpec.getUuid();
 
-        requestSpec.getGist("gist/" + uuid, author, content, date);
+        requestSpec.getGist("gist/" + uuid, author, content, date, 200);
     }
+
+    @Test
+    @Order(3)
+    public void updateGistTest() throws JSONException {
+        String uuid = requestSpec.getUuid();
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject
+                .put("uuid", uuid)
+                .put("author", "changedAuthor")
+                .put("type", "INFO")
+                .put("content", "changedContent")
+                .put("validUntil", "2019-12-17T11:04:34");
+
+        requestSpec.updateGist("gist/" + uuid, jsonObject, "changedAuthor", "changedContent", "2019-12-17T11:04:34");
+
+    }
+
+    @Test
+    @Order(4)
+    public void getUpdatedGistTest() {
+        String uuid = requestSpec.getUuid();
+
+        requestSpec.getGist("gist/" + uuid,"changedAuthor", "changedContent", "2019-12-17T11:04:34", 200);
+    }
+
+    @Test
+    @Order(5)
+    public void deleteGistTest() {
+        String uuid = requestSpec.getUuid();
+
+        requestSpec.deleteGist("gist/" + uuid);
+    }
+
+    @Test
+    @Order(6)
+    public void getDeletedGistTest() {
+        String uuid = requestSpec.getUuid();
+
+        requestSpec.getGist("gist/" + uuid, null, null, null, 404);
+    }
+
 }

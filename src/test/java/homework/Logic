@@ -19,6 +19,7 @@ Test logic (test subject > objects to be tested > automation priority (all cases
     Update existing gist
             - Happypath > highest
             - Input data validation to each field/pairwise > lowest
+            - Try to set new gistID on update stage (we might not need to have gistID here)
             - Missing field case (without "info" field 500 is received) > low (quiet duplicates create gist case)
             - Update gist w/o id > medium
             - Update gist with unexisting id > high (we might create new sometimes :) )
